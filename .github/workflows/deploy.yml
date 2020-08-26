@@ -1,0 +1,48 @@
+name: Deploy To NuGet registry
+
+on:
+  push:
+    tags:
+      - "*"
+
+env:
+  PROJECT_CSPROJ_FILE: src/TheDialgaTeam.Core.Logger.csproj
+  PROJECT_PUBLISH_ROOT: publish
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  build:
+    name: Build library
+    runs-on: windows-2022
+
+    steps:
+      # Init
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Setup NuGet Credentials
+        run: |
+          dotnet nuget add source --username "${{ github.actor }}" --password "${{ github.token }}" --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+
+      # Build Project
+      - name: Patch csproj
+        run: |
+          $version = "${{ github.ref }}" -split "/" | Select-Object -Last 1
+          $csproj_file = Join-Path "${{ github.workspace }}" "${env:PROJECT_CSPROJ_FILE}"
+          ((Get-Content "$csproj_file") -replace '^(\s*)<Version>.+?<\/Version>(\s*)$', "`$1<Version>${version}</Version>`$2") | Set-Content "${csproj_file}"
+
+      - name: Build project
+        run: |
+          $output = Join-Path "${{ github.workspace }}" "${env:PROJECT_PUBLISH_ROOT}"
+          dotnet pack -c Release -o "${output}"
+
+      - name: Publish project
+        run: |
+          $version = "${{ github.ref }}" -split "/" | Select-Object -Last 1
+          $output = Join-Path "${{ github.workspace }}" "${env:PROJECT_PUBLISH_ROOT}" "*.nupkg"
+          dotnet nuget push "${output}" --api-key "${{ github.token }}" --source "github"
