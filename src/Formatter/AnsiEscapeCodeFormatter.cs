@@ -126,7 +126,7 @@ namespace TheDialgaTeam.Core.Logger.Formatter
                                 break;
 
                             case "\u001b[30;1m":
-                                Console.ForegroundColor = ConsoleColor.DarkGray;
+                                Console.ForegroundColor = ConsoleColor.Gray;
                                 break;
 
                             case "\u001b[31;1m":
