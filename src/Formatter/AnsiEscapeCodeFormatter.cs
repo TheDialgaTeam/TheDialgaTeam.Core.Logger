@@ -9,7 +9,7 @@ namespace TheDialgaTeam.Core.Logger.Formatter
     public static class AnsiEscapeCodeFormatter
     {
         private const int StandardOutputHandleId = -11;
-        private const uint EnableVirtualTerminalProcessingMode = 4;
+        private const int EnableVirtualTerminalProcessingMode = 4;
         private const long InvalidHandleValue = -1;
 
         private const string AnsiEscapeRegex = "((?:\\u001b\\[[0-9:;<=>?]*[\\s!\"#$%&'()*+,\\-./]*[@A-Z[\\]^_`a-z{|}~])|(?:\\u001b[@A-Z\\[\\]^_]))";
@@ -284,9 +284,9 @@ namespace TheDialgaTeam.Core.Logger.Formatter
         private static extern IntPtr GetStdHandle(int handleId);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern bool GetConsoleMode(IntPtr handle, out uint mode);
+        private static extern bool GetConsoleMode(IntPtr handle, out int mode);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern bool SetConsoleMode(IntPtr handle, uint mode);
+        private static extern bool SetConsoleMode(IntPtr handle, int mode);
     }
 }
