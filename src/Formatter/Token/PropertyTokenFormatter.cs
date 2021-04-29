@@ -15,17 +15,15 @@ namespace TheDialgaTeam.Core.Logger.Formatter.Token
 
         public void Format(LogEvent logEvent, TextWriter output)
         {
-            var propertyToken = _propertyToken;
-
-            if (logEvent.Properties.TryGetValue(propertyToken.PropertyName, out var logEventPropertyValue))
+            if (logEvent.Properties.TryGetValue(_propertyToken.PropertyName, out var logEventPropertyValue))
             {
                 var writer = new StringWriter();
-                logEventPropertyValue.Render(writer, propertyToken.Format);
-                AnsiEscapeCodeFormatter.Format(output, writer.ToString(), propertyToken);
+                logEventPropertyValue.Render(writer, _propertyToken.Format);
+                AnsiEscapeCodeFormatter.Format(output, writer.ToString(), _propertyToken);
             }
             else
             {
-                AnsiEscapeCodeFormatter.Format(output, string.Empty, propertyToken);
+                AnsiEscapeCodeFormatter.Format(output, string.Empty, _propertyToken);
             }
         }
     }

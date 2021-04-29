@@ -15,8 +15,7 @@ namespace TheDialgaTeam.Core.Logger.Formatter.Token
 
         public void Format(LogEvent logEvent, TextWriter output)
         {
-            var propertyToken = _propertyToken;
-            AnsiEscapeCodeFormatter.Format(output, logEvent.Timestamp.ToString(propertyToken.Format), propertyToken);
+            AnsiEscapeCodeFormatter.Format(output, logEvent.Timestamp.ToString(_propertyToken.Format), _propertyToken);
         }
     }
 }
