@@ -13,10 +13,8 @@ namespace TheDialgaTeam.Core.Logger.Formatter
         private const long InvalidHandleValue = -1;
 
         private const string AnsiEscapeRegex = "((?:\\u001b\\[[0-9:;<=>?]*[\\s!\"#$%&'()*+,\\-./]*[@A-Z[\\]^_`a-z{|}~])|(?:\\u001b[@A-Z\\[\\]^_]))";
-        private const int PadCharacterLength = 50;
 
         private static readonly bool IsAnsiEscapeCodeSupported;
-        private static readonly char[] PadCharacters;
 
         private static readonly ConsoleColor DefaultForegroundColor = Console.ForegroundColor;
         private static readonly ConsoleColor DefaultBackgroundColor = Console.BackgroundColor;
@@ -40,15 +38,6 @@ namespace TheDialgaTeam.Core.Logger.Formatter
                     IsAnsiEscapeCodeSupported = false;
                 }
             }
-
-            var padChars = new char[PadCharacterLength];
-
-            for (var i = 0; i < PadCharacterLength; i++)
-            {
-                padChars[i] = ' ';
-            }
-
-            PadCharacters = padChars;
         }
 
         public static void Format(TextWriter textWriter, string text, PropertyToken? propertyToken = null)
@@ -93,135 +82,151 @@ namespace TheDialgaTeam.Core.Logger.Formatter
 
                         switch (ansiToken.Value)
                         {
-                            case "\u001b[30m":
+                            case AnsiEscapeCodeConstants.BlackForegroundColor:
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 break;
 
-                            case "\u001b[31m":
+                            case AnsiEscapeCodeConstants.DarkRedForegroundColor:
                                 Console.ForegroundColor = ConsoleColor.DarkRed;
                                 break;
 
-                            case "\u001b[32m":
+                            case AnsiEscapeCodeConstants.DarkGreenForegroundColor:
                                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                                 break;
 
-                            case "\u001b[33m":
+                            case AnsiEscapeCodeConstants.DarkYellowForegroundColor:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 break;
 
-                            case "\u001b[34m":
+                            case AnsiEscapeCodeConstants.DarkBlueForegroundColor:
                                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                                 break;
 
-                            case "\u001b[35m":
+                            case AnsiEscapeCodeConstants.DarkMagentaForegroundColor:
                                 Console.ForegroundColor = ConsoleColor.DarkMagenta;
                                 break;
 
-                            case "\u001b[36m":
+                            case AnsiEscapeCodeConstants.DarkCyanForegroundColor:
                                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                                 break;
 
-                            case "\u001b[37m":
-                                Console.ForegroundColor = ConsoleColor.White;
+                            case AnsiEscapeCodeConstants.DarkGrayForegroundColor:
+                                Console.ForegroundColor = ConsoleColor.DarkGray;
                                 break;
 
+                            case AnsiEscapeCodeConstants.GrayForegroundColor:
                             case "\u001b[30;1m":
                                 Console.ForegroundColor = ConsoleColor.Gray;
                                 break;
 
+                            case AnsiEscapeCodeConstants.RedForegroundColor:
                             case "\u001b[31;1m":
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 break;
 
+                            case AnsiEscapeCodeConstants.GreenForegroundColor:
                             case "\u001b[32;1m":
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 break;
 
+                            case AnsiEscapeCodeConstants.YellowForegroundColor:
                             case "\u001b[33;1m":
                                 Console.ForegroundColor = ConsoleColor.Yellow;
                                 break;
 
+                            case AnsiEscapeCodeConstants.BlueForegroundColor:
                             case "\u001b[34;1m":
                                 Console.ForegroundColor = ConsoleColor.Blue;
                                 break;
 
+                            case AnsiEscapeCodeConstants.MagentaForegroundColor:
                             case "\u001b[35;1m":
                                 Console.ForegroundColor = ConsoleColor.Magenta;
                                 break;
 
+                            case AnsiEscapeCodeConstants.CyanForegroundColor:
                             case "\u001b[36;1m":
                                 Console.ForegroundColor = ConsoleColor.Cyan;
                                 break;
 
+                            case AnsiEscapeCodeConstants.WhiteForegroundColor:
                             case "\u001b[37;1m":
                                 Console.ForegroundColor = ConsoleColor.White;
                                 break;
 
-                            case "\u001b[40m":
+                            case AnsiEscapeCodeConstants.BlackBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.Black;
                                 break;
 
-                            case "\u001b[41m":
+                            case AnsiEscapeCodeConstants.DarkRedBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.DarkRed;
                                 break;
 
-                            case "\u001b[42m":
+                            case AnsiEscapeCodeConstants.DarkGreenBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                                 break;
 
-                            case "\u001b[43m":
+                            case AnsiEscapeCodeConstants.DarkYellowBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.DarkYellow;
                                 break;
 
-                            case "\u001b[44m":
+                            case AnsiEscapeCodeConstants.DarkBlueBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                                 break;
 
-                            case "\u001b[45m":
+                            case AnsiEscapeCodeConstants.DarkMagentaBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.DarkMagenta;
                                 break;
 
-                            case "\u001b[46m":
+                            case AnsiEscapeCodeConstants.DarkCyanBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.DarkCyan;
                                 break;
 
-                            case "\u001b[47m":
-                                Console.BackgroundColor = ConsoleColor.White;
-                                break;
-
-                            case "\u001b[40;1m":
+                            case AnsiEscapeCodeConstants.DarkGrayBackgroundColor:
                                 Console.BackgroundColor = ConsoleColor.DarkGray;
                                 break;
 
+                            case AnsiEscapeCodeConstants.GrayBackgroundColor:
+                            case "\u001b[40;1m":
+                                Console.BackgroundColor = ConsoleColor.Gray;
+                                break;
+
+                            case AnsiEscapeCodeConstants.RedBackgroundColor:
                             case "\u001b[41;1m":
                                 Console.BackgroundColor = ConsoleColor.Red;
                                 break;
 
+                            case AnsiEscapeCodeConstants.GreenBackgroundColor:
                             case "\u001b[42;1m":
                                 Console.BackgroundColor = ConsoleColor.Green;
                                 break;
 
+                            case AnsiEscapeCodeConstants.YellowBackgroundColor:
                             case "\u001b[43;1m":
                                 Console.BackgroundColor = ConsoleColor.Yellow;
                                 break;
 
+                            case AnsiEscapeCodeConstants.BlueBackgroundColor:
                             case "\u001b[44;1m":
                                 Console.BackgroundColor = ConsoleColor.Blue;
                                 break;
 
+                            case AnsiEscapeCodeConstants.MagentaBackgroundColor:
                             case "\u001b[45;1m":
                                 Console.BackgroundColor = ConsoleColor.Magenta;
                                 break;
 
+                            case AnsiEscapeCodeConstants.CyanBackgroundColor:
                             case "\u001b[46;1m":
                                 Console.BackgroundColor = ConsoleColor.Cyan;
                                 break;
 
+                            case AnsiEscapeCodeConstants.WhiteBackgroundColor:
                             case "\u001b[47;1m":
                                 Console.BackgroundColor = ConsoleColor.White;
                                 break;
 
-                            case "\u001b[0m":
+                            case AnsiEscapeCodeConstants.DefaultColor:
                                 Console.ForegroundColor = DefaultForegroundColor;
                                 Console.BackgroundColor = DefaultBackgroundColor;
                                 break;
@@ -258,19 +263,9 @@ namespace TheDialgaTeam.Core.Logger.Formatter
                     textWriter.Write(text);
                 }
 
-                if (amountToPad <= PadCharacterLength)
+                for (var i = amountToPad - 1; i >= 0; i--)
                 {
-                    textWriter.Write(PadCharacters, 0, amountToPad);
-                }
-                else
-                {
-                    textWriter.Write(string.Create(amountToPad, amountToPad, (span, length) =>
-                    {
-                        for (var i = 0; i < length; i++)
-                        {
-                            span[i] = ' ';
-                        }
-                    }));
+                    textWriter.Write(' ');
                 }
 
                 if (alignment.Direction == AlignmentDirection.Right)
