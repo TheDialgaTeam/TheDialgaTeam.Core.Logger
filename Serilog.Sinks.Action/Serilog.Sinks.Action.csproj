@@ -16,8 +16,7 @@
 		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serilog</PackageTags>
-		<AssemblyVersion>1.0.0</AssemblyVersion>
-		<FileVersion>1.0.0</FileVersion>
+		<PackageVersion>1.0.0</PackageVersion>
 		<Platforms>AnyCPU;x64;x86</Platforms>
 		<Nullable Condition="'$(TargetFramework)'=='netstandard2.1'">enable</Nullable>
 	</PropertyGroup>
