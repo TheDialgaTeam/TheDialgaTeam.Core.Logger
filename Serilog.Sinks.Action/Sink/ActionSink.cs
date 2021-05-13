@@ -4,7 +4,7 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 
-namespace TheDialgaTeam.Core.Logger.Sink
+namespace Serilog.Sinks.Action.Sink
 {
     public class ActionSink : ILogEventSink
     {
@@ -23,9 +23,11 @@ namespace TheDialgaTeam.Core.Logger.Sink
         {
             lock (_syncRoot)
             {
-                using var stringWriter = new StringWriter();
-                _formatter.Format(logEvent, stringWriter);
-                _outputAction(stringWriter.ToString());
+                using (var stringWriter = new StringWriter())
+                {
+                    _formatter.Format(logEvent, stringWriter);
+                    _outputAction(stringWriter.ToString());
+                }
             }
         }
     }

@@ -2,9 +2,9 @@
 using Serilog.Events;
 using Serilog.Parsing;
 
-namespace TheDialgaTeam.Core.Logger.Formatter.Token
+namespace Serilog.Formatting.Ansi.Token
 {
-    public class TimestampTokenFormatter : ITokenFormatter
+    internal class TimestampTokenFormatter : ITokenFormatter
     {
         private readonly PropertyToken _propertyToken;
 

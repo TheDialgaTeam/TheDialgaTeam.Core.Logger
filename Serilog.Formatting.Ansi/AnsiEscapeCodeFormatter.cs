@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Serilog.Parsing;
 
-namespace TheDialgaTeam.Core.Logger.Formatter
+namespace Serilog.Formatting.Ansi
 {
-    public static class AnsiEscapeCodeFormatter
+    internal static class AnsiEscapeCodeFormatter
     {
         private const int StandardOutputHandleId = -11;
         private const int EnableVirtualTerminalProcessingMode = 4;
@@ -16,8 +16,8 @@ namespace TheDialgaTeam.Core.Logger.Formatter
 
         private static readonly bool IsAnsiEscapeCodeSupported;
 
-        private static readonly ConsoleColor DefaultForegroundColor = Console.ForegroundColor;
-        private static readonly ConsoleColor DefaultBackgroundColor = Console.BackgroundColor;
+        private static readonly ConsoleColor DefaultForegroundColor;
+        private static readonly ConsoleColor DefaultBackgroundColor;
 
         static AnsiEscapeCodeFormatter()
         {
@@ -38,6 +38,9 @@ namespace TheDialgaTeam.Core.Logger.Formatter
                     IsAnsiEscapeCodeSupported = false;
                 }
             }
+
+            DefaultForegroundColor = Console.ForegroundColor;
+            DefaultBackgroundColor = Console.BackgroundColor;
         }
 
         public static void Format(TextWriter textWriter, string text, PropertyToken? propertyToken = null)
@@ -226,7 +229,7 @@ namespace TheDialgaTeam.Core.Logger.Formatter
                                 Console.BackgroundColor = ConsoleColor.White;
                                 break;
 
-                            case AnsiEscapeCodeConstants.DefaultColor:
+                            case AnsiEscapeCodeConstants.Reset:
                                 Console.ForegroundColor = DefaultForegroundColor;
                                 Console.BackgroundColor = DefaultBackgroundColor;
                                 break;
@@ -249,13 +252,13 @@ namespace TheDialgaTeam.Core.Logger.Formatter
         {
             var textLength = text.Length;
 
-            if (propertyToken?.Alignment == null || textLength >= propertyToken.Alignment.Value.Width)
+            if (propertyToken == null || textLength >= propertyToken.Alignment.GetValueOrDefault().Width)
             {
                 textWriter.Write(text);
             }
             else
             {
-                var alignment = propertyToken.Alignment.Value;
+                var alignment = propertyToken.Alignment.GetValueOrDefault();
                 var amountToPad = alignment.Width - textLength;
 
                 if (alignment.Direction == AlignmentDirection.Left)

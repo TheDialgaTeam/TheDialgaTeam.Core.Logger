@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using Serilog.Events;
 
-namespace TheDialgaTeam.Core.Logger.Formatter.Token
+namespace Serilog.Formatting.Ansi.Token
 {
-    public interface ITokenFormatter
+    internal interface ITokenFormatter
     {
         void Format(LogEvent logEvent, TextWriter output);
     }

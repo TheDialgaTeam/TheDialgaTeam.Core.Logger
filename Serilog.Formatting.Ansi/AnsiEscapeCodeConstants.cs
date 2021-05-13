@@ -1,4 +1,4 @@
-﻿namespace TheDialgaTeam.Core.Logger.Formatter
+﻿namespace Serilog.Formatting.Ansi
 {
     public static class AnsiEscapeCodeConstants
     {
@@ -50,11 +50,11 @@
         public const string WhiteForegroundColor = "\u001b[97m";
         public const string WhiteBackgroundColor = "\u001b[107m";
 
-        public const string DefaultColor = "\u001b[0m";
-        public const string ResetColor = "\u001b[0m";
+        public const string Reset = "\u001b[0m";
 
         public const string Bold = "\u001b[1m";
         public const string Underline = "\u001b[4m";
+        public const string Reverse = "\u001b[7m";
         public const string NoUnderline = "\u001b[24m";
     }
 }

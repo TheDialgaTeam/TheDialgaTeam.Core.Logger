@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using Serilog.Events;
 
-namespace TheDialgaTeam.Core.Logger.Formatter.Token
+namespace Serilog.Formatting.Ansi.Token
 {
-    public class TextTokenFormatter : ITokenFormatter
+    internal class TextTokenFormatter : ITokenFormatter
     {
         private readonly string _text;
 

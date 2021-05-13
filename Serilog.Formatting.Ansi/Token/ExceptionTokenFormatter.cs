@@ -3,9 +3,9 @@ using System.IO;
 using Serilog.Events;
 using Serilog.Parsing;
 
-namespace TheDialgaTeam.Core.Logger.Formatter.Token
+namespace Serilog.Formatting.Ansi.Token
 {
-    public class ExceptionTokenFormatter : ITokenFormatter
+    internal class ExceptionTokenFormatter : ITokenFormatter
     {
         private readonly PropertyToken _propertyToken;
 

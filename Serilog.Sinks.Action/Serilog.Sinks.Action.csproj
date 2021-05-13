@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyName>Serilog.Sinks.Action</AssemblyName>
+		<RootNamespace>Serilog.Sinks.Action</RootNamespace>
+		<TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.3;netstandard1.0;net46;net45</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>Serilog.Sinks.Action</PackageId>
+		<Authors>Yong Jian Ming</Authors>
+		<Product>Serilog.Sinks.Action</Product>
+		<Description>A Serilog sink that writes log events to the action delegate.</Description>
+		<Copyright>Copyright © 2021 Yong Jian Ming</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>serilog</PackageTags>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+		<Nullable Condition="'$(TargetFramework)'=='netstandard2.1'">enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>DEBUG</DefineConstants>
+		<Optimize>false</Optimize>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<Optimize>true</Optimize>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Serilog" Version="2.10.0" Condition="'$(TargetFramework)'=='netstandard2.1'" />
+		<PackageReference Include="Serilog" Version="2.8.0" Condition="'$(TargetFramework)'=='netstandard2.0'" />
+		<PackageReference Include="Serilog" Version="2.0.0" Condition="'$(TargetFramework)'=='netstandard1.3'" />
+		<PackageReference Include="Serilog" Version="2.0.0" Condition="'$(TargetFramework)'=='netstandard1.0'" />
+		<PackageReference Include="Serilog" Version="2.2.1" Condition="'$(TargetFramework)'=='net46'" />
+		<PackageReference Include="Serilog" Version="2.0.0" Condition="'$(TargetFramework)'=='net45'" />
+	</ItemGroup>
+
+</Project>

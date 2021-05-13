@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyName>Serilog.Formatting.Ansi</AssemblyName>
+		<RootNamespace>Serilog.Formatting.Ansi</RootNamespace>
+		<TargetFrameworks>netstandard2.1</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>Serilog.Formatting.Ansi</PackageId>
+		<Authors>Yong Jian Ming</Authors>
+		<Product>Serilog.Formatting.Ansi</Product>
+		<Description>Handles ansi escape code for supported stream.
+For console streams, it will handle ansi escape code and print approriate colors.
+For non ansi supported streams, all ansi escape code will be stripped when formatting.</Description>
+		<Copyright>Copyright © 2021 Yong Jian Ming</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>serilog, ansi</PackageTags>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>DEBUG</DefineConstants>
+		<Optimize>false</Optimize>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<Optimize>true</Optimize>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Serilog" Version="2.10.0" />
+	</ItemGroup>
+
+</Project>

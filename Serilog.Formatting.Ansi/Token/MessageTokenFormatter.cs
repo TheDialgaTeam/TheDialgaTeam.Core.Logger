@@ -2,9 +2,9 @@
 using Serilog.Events;
 using Serilog.Parsing;
 
-namespace TheDialgaTeam.Core.Logger.Formatter.Token
+namespace Serilog.Formatting.Ansi.Token
 {
-    public class MessageTokenFormatter : ITokenFormatter
+    internal class MessageTokenFormatter : ITokenFormatter
     {
         private readonly PropertyToken _propertyToken;
 
@@ -15,7 +15,7 @@ namespace TheDialgaTeam.Core.Logger.Formatter.Token
 
         public void Format(LogEvent logEvent, TextWriter output)
         {
-            var textFormatter = new OutputTemplateTextFormatter(logEvent.MessageTemplate.Text);
+            var textFormatter = new AnsiOutputTemplateTextFormatter(logEvent.MessageTemplate.Text);
             textFormatter.Format(logEvent, output);
         }
     }

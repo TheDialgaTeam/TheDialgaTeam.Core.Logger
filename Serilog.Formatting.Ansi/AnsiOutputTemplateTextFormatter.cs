@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Serilog.Events;
-using Serilog.Formatting;
+using Serilog.Formatting.Ansi.Token;
 using Serilog.Formatting.Display;
 using Serilog.Parsing;
-using TheDialgaTeam.Core.Logger.Formatter.Token;
 
-namespace TheDialgaTeam.Core.Logger.Formatter
+namespace Serilog.Formatting.Ansi
 {
-    public class OutputTemplateTextFormatter : ITextFormatter
+    public class AnsiOutputTemplateTextFormatter : ITextFormatter
     {
         private readonly ITokenFormatter[] _tokenFormatters;
 
-        public OutputTemplateTextFormatter(string outputTemplate = "[{Timestamp:HH:mm:ss} {Level}] {Message}{NewLine}{Exception}")
+        public AnsiOutputTemplateTextFormatter(string outputTemplate = "[{Timestamp:HH:mm:ss} {Level}] {Message}{NewLine}{Exception}")
         {
             var messageTemplate = new MessageTemplateParser().Parse(outputTemplate);
             var messageTemplateTokens = messageTemplate.Tokens;

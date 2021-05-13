@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyName>Serilog.Sinks.AnsiConsole</AssemblyName>
+		<RootNamespace>Serilog.Sinks.AnsiConsole</RootNamespace>
+		<TargetFrameworks>netstandard2.1</TargetFrameworks>
+		<OutputType>Library</OutputType>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>Serilog.Sinks.AnsiConsole</PackageId>
+		<Authors>Yong Jian Ming</Authors>
+		<Product>Serilog.Sinks.AnsiConsole</Product>
+		<Description>A Serilog sink that writes log events to the console/terminal.</Description>
+		<Copyright>Copyright © 2021 Yong Jian Ming</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>serilog, ansi, console</PackageTags>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>DEBUG</DefineConstants>
+		<Optimize>false</Optimize>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<Optimize>true</Optimize>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Serilog" Version="2.10.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Serilog.Formatting.Ansi\Serilog.Formatting.Ansi.csproj" />
+  </ItemGroup>
+
+</Project>
