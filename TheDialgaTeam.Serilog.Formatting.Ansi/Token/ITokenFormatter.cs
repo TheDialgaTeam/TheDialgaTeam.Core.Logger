@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Serilog.Events;
 
-namespace Serilog.Formatting.Ansi.Token
+namespace TheDialgaTeam.Serilog.Formatting.Ansi.Token
 {
     internal interface ITokenFormatter
     {

@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using Serilog.Events;
 using Serilog.Parsing;
+using TheDialgaTeam.Serilog.Formatting.Ansi.Formatter;
 
-namespace Serilog.Formatting.Ansi.Token
+namespace TheDialgaTeam.Serilog.Formatting.Ansi.Token
 {
     internal class TimestampTokenFormatter : ITokenFormatter
     {
@@ -15,7 +16,7 @@ namespace Serilog.Formatting.Ansi.Token
 
         public void Format(LogEvent logEvent, TextWriter output)
         {
-            AnsiEscapeCodeFormatter.Format(output, logEvent.Timestamp.ToString(_propertyToken.Format), _propertyToken);
+            PaddingFormatter.Format(output, logEvent.Timestamp.ToString(_propertyToken.Format), _propertyToken.Alignment);
         }
     }
 }

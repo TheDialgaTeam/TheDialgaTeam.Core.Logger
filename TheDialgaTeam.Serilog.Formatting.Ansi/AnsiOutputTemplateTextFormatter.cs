@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Serilog.Events;
-using Serilog.Formatting.Ansi.Token;
+using Serilog.Formatting;
 using Serilog.Formatting.Display;
 using Serilog.Parsing;
+using TheDialgaTeam.Serilog.Formatting.Ansi.Token;
 
-namespace Serilog.Formatting.Ansi
+namespace TheDialgaTeam.Serilog.Formatting.Ansi
 {
     public class AnsiOutputTemplateTextFormatter : ITextFormatter
     {
-        private readonly ITokenFormatter[] _tokenFormatters;
+        private readonly IReadOnlyList<ITokenFormatter> _tokenFormatters;
 
-        public AnsiOutputTemplateTextFormatter(string outputTemplate = "[{Timestamp:HH:mm:ss} {Level}] {Message}{NewLine}{Exception}")
+        public AnsiOutputTemplateTextFormatter(string outputTemplate = "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
         {
             var messageTemplate = new MessageTemplateParser().Parse(outputTemplate);
             var messageTemplateTokens = messageTemplate.Tokens;
@@ -61,7 +62,28 @@ namespace Serilog.Formatting.Ansi
                 }
             }
 
-            _tokenFormatters = tokenFormatters.ToArray();
+            _tokenFormatters = tokenFormatters;
+        }
+
+        public AnsiOutputTemplateTextFormatter(IEnumerable<MessageTemplateToken> messageTemplateTokens)
+        {
+            var tokenFormatters = new List<ITokenFormatter>();
+
+            foreach (var messageTemplateToken in messageTemplateTokens)
+            {
+                switch (messageTemplateToken)
+                {
+                    case TextToken textToken:
+                        tokenFormatters.Add(new TextTokenFormatter(textToken.Text));
+                        break;
+
+                    case PropertyToken propertyToken:
+                        tokenFormatters.Add(new PropertyTokenFormatter(propertyToken));
+                        break;
+                }
+            }
+
+            _tokenFormatters = tokenFormatters;
         }
 
         public void Format(LogEvent logEvent, TextWriter output)

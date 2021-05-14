@@ -2,8 +2,9 @@
 using System.Linq;
 using Serilog.Events;
 using Serilog.Parsing;
+using TheDialgaTeam.Serilog.Formatting.Ansi.Formatter;
 
-namespace Serilog.Formatting.Ansi.Token
+namespace TheDialgaTeam.Serilog.Formatting.Ansi.Token
 {
     internal class PropertiesTokenFormatter : ITokenFormatter
     {
@@ -37,7 +38,7 @@ namespace Serilog.Formatting.Ansi.Token
                 .Where(a => !TemplateContainsPropertyName(logEvent.MessageTemplate, a.Key) && !TemplateContainsPropertyName(_messageTemplate, a.Key))
                 .Select(a => new LogEventProperty(a.Key, a.Value));
 
-            AnsiEscapeCodeFormatter.Format(output, string.Join(",", included.Select(a => $"{a.Name}: {a.Value}")), _propertyToken);
+            AnsiEscapeCodeFormatter.Format(output, string.Join(",", included.Select(a => $"{a.Name}: {a.Value}")), _propertyToken.Alignment);
         }
     }
 }

@@ -1,21 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>Serilog.Sinks.AnsiConsole</AssemblyName>
-		<RootNamespace>Serilog.Sinks.AnsiConsole</RootNamespace>
+		<AssemblyName>TheDialgaTeam.Serilog.Formatting.Ansi</AssemblyName>
+		<RootNamespace>TheDialgaTeam.Serilog.Formatting.Ansi</RootNamespace>
 		<TargetFrameworks>netstandard2.1</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageId>Serilog.Sinks.AnsiConsole</PackageId>
+		<PackageId>TheDialgaTeam.Serilog.Formatting.Ansi</PackageId>
 		<Authors>Yong Jian Ming</Authors>
-		<Product>Serilog.Sinks.AnsiConsole</Product>
-		<Description>A Serilog sink that writes log events to the console/terminal.</Description>
+		<Product>TheDialgaTeam.Serilog.Formatting.Ansi</Product>
+		<Description>Handles ansi escape code for supported stream.
+For console streams, it will handle ansi escape code and print approriate colors.
+For non ansi supported streams, all ansi escape code will be stripped when formatting.</Description>
 		<Copyright>Copyright © 2021 Yong Jian Ming</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>serilog, ansi, console</PackageTags>
+		<PackageTags>serilog, ansi</PackageTags>
 		<PackageVersion>1.0.0</PackageVersion>
 		<Platforms>AnyCPU;x64;x86</Platforms>
 		<Nullable>enable</Nullable>
@@ -35,9 +37,5 @@
 	<ItemGroup>
 		<PackageReference Include="Serilog" Version="2.10.0" />
 	</ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Serilog.Formatting.Ansi\Serilog.Formatting.Ansi.csproj" />
-  </ItemGroup>
 
 </Project>

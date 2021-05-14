@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using Serilog.Events;
+using TheDialgaTeam.Serilog.Formatting.Ansi.Formatter;
 
-namespace Serilog.Formatting.Ansi.Token
+namespace TheDialgaTeam.Serilog.Formatting.Ansi.Token
 {
     internal class TextTokenFormatter : ITokenFormatter
     {

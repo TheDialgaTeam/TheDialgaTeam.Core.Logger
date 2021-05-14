@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Serilog.Parsing;
 
-namespace Serilog.Formatting.Ansi
+namespace TheDialgaTeam.Serilog.Formatting.Ansi.Formatter
 {
     internal static class AnsiEscapeCodeFormatter
     {
@@ -43,7 +43,7 @@ namespace Serilog.Formatting.Ansi
             DefaultBackgroundColor = Console.BackgroundColor;
         }
 
-        public static void Format(TextWriter textWriter, string text, PropertyToken? propertyToken = null)
+        public static void Format(TextWriter textWriter, string text, Alignment? alignment = null)
         {
             var isCompatibleAnsiOutput = textWriter == Console.Out || textWriter == Console.Error;
 
@@ -51,7 +51,7 @@ namespace Serilog.Formatting.Ansi
             {
                 if (IsAnsiEscapeCodeSupported)
                 {
-                    ApplyPadding(textWriter, text, propertyToken);
+                    PaddingFormatter.Format(textWriter, text, alignment);
                 }
                 else
                 {
@@ -59,7 +59,7 @@ namespace Serilog.Formatting.Ansi
 
                     if (ansiTokens.Count == 0)
                     {
-                        ApplyPadding(textWriter, text, propertyToken);
+                        PaddingFormatter.Format(textWriter, text, alignment);
                         return;
                     }
 
@@ -244,37 +244,7 @@ namespace Serilog.Formatting.Ansi
             }
             else
             {
-                ApplyPadding(textWriter, Regex.Replace(text, AnsiEscapeRegex, string.Empty), propertyToken);
-            }
-        }
-
-        private static void ApplyPadding(TextWriter textWriter, string text, PropertyToken? propertyToken)
-        {
-            var textLength = text.Length;
-
-            if (propertyToken == null || textLength >= propertyToken.Alignment.GetValueOrDefault().Width)
-            {
-                textWriter.Write(text);
-            }
-            else
-            {
-                var alignment = propertyToken.Alignment.GetValueOrDefault();
-                var amountToPad = alignment.Width - textLength;
-
-                if (alignment.Direction == AlignmentDirection.Left)
-                {
-                    textWriter.Write(text);
-                }
-
-                for (var i = amountToPad - 1; i >= 0; i--)
-                {
-                    textWriter.Write(' ');
-                }
-
-                if (alignment.Direction == AlignmentDirection.Right)
-                {
-                    textWriter.Write(text);
-                }
+                PaddingFormatter.Format(textWriter, Regex.Replace(text, AnsiEscapeRegex, string.Empty), alignment);
             }
         }
 

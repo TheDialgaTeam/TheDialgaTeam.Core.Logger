@@ -2,7 +2,7 @@
 using Serilog.Events;
 using Serilog.Parsing;
 
-namespace Serilog.Formatting.Ansi.Token
+namespace TheDialgaTeam.Serilog.Formatting.Ansi.Token
 {
     internal class MessageTokenFormatter : ITokenFormatter
     {
@@ -15,7 +15,7 @@ namespace Serilog.Formatting.Ansi.Token
 
         public void Format(LogEvent logEvent, TextWriter output)
         {
-            var textFormatter = new AnsiOutputTemplateTextFormatter(logEvent.MessageTemplate.Text);
+            var textFormatter = new AnsiOutputTemplateTextFormatter(logEvent.MessageTemplate.Tokens);
             textFormatter.Format(logEvent, output);
         }
     }

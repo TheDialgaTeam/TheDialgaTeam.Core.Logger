@@ -1,11 +1,12 @@
 ﻿using System;
+using Serilog;
 using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
-using Serilog.Sinks.Action.Sink;
+using TheDialgaTeam.Serilog.Sinks.Action.Sink;
 
-namespace Serilog.Sinks.Action
+namespace TheDialgaTeam.Serilog.Sinks.Action
 {
     public static class ActionLoggerConfigurationExtensions
     {

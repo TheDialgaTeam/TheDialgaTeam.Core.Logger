@@ -1,4 +1,4 @@
-﻿namespace Serilog.Formatting.Ansi
+﻿namespace TheDialgaTeam.Serilog.Formatting.Ansi
 {
     public static class AnsiEscapeCodeConstants
     {

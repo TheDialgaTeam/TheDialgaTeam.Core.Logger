@@ -4,7 +4,7 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 
-namespace Serilog.Sinks.Action.Sink
+namespace TheDialgaTeam.Serilog.Sinks.Action.Sink
 {
     public class ActionSink : ILogEventSink
     {

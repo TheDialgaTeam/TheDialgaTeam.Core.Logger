@@ -1,23 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>Serilog.Formatting.Ansi</AssemblyName>
-		<RootNamespace>Serilog.Formatting.Ansi</RootNamespace>
+		<AssemblyName>TheDialgaTeam.Core.Logger</AssemblyName>
+		<RootNamespace>TheDialgaTeam.Core.Logger</RootNamespace>
 		<TargetFrameworks>netstandard2.1</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageId>Serilog.Formatting.Ansi</PackageId>
+		<PackageId>TheDialgaTeam.Core.Logger</PackageId>
 		<Authors>Yong Jian Ming</Authors>
-		<Product>Serilog.Formatting.Ansi</Product>
-		<Description>Handles ansi escape code for supported stream.
-For console streams, it will handle ansi escape code and print approriate colors.
-For non ansi supported streams, all ansi escape code will be stripped when formatting.</Description>
+		<Product>TheDialgaTeam.Core.Logger</Product>
+		<Description>TheDialgaTeam Core Logger metapackage.</Description>
 		<Copyright>Copyright © 2021 Yong Jian Ming</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>serilog, ansi</PackageTags>
+		<PackageTags></PackageTags>
 		<PackageVersion>1.0.0</PackageVersion>
 		<Platforms>AnyCPU;x64;x86</Platforms>
 		<Nullable>enable</Nullable>
@@ -35,7 +33,10 @@ For non ansi supported streams, all ansi escape code will be stripped when forma
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Serilog" Version="2.10.0" />
+		<ProjectReference Include="..\TheDialgaTeam.Extensions.Logging.LoggingTemplate\TheDialgaTeam.Extensions.Logging.LoggingTemplate.csproj" />
+		<ProjectReference Include="..\TheDialgaTeam.Serilog.Formatting.Ansi\TheDialgaTeam.Serilog.Formatting.Ansi.csproj" />
+		<ProjectReference Include="..\TheDialgaTeam.Serilog.Sinks.Action\TheDialgaTeam.Serilog.Sinks.Action.csproj" />
+		<ProjectReference Include="..\TheDialgaTeam.Serilog.Sinks.AnsiConsole\TheDialgaTeam.Serilog.Sinks.AnsiConsole.csproj" />
 	</ItemGroup>
 
 </Project>

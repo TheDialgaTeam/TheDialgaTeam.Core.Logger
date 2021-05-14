@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>Serilog.Sinks.Action</AssemblyName>
-		<RootNamespace>Serilog.Sinks.Action</RootNamespace>
+		<AssemblyName>TheDialgaTeam.Serilog.Sinks.Action</AssemblyName>
+		<RootNamespace>TheDialgaTeam.Serilog.Sinks.Action</RootNamespace>
 		<TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.3;netstandard1.0;net46;net45</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageId>Serilog.Sinks.Action</PackageId>
+		<PackageId>TheDialgaTeam.Serilog.Sinks.Action</PackageId>
 		<Authors>Yong Jian Ming</Authors>
-		<Product>Serilog.Sinks.Action</Product>
+		<Product>TheDialgaTeam.Serilog.Sinks.Action</Product>
 		<Description>A Serilog sink that writes log events to the action delegate.</Description>
 		<Copyright>Copyright © 2021 Yong Jian Ming</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>

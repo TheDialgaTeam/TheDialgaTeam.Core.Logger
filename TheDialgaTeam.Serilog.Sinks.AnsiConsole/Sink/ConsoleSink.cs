@@ -3,7 +3,7 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 
-namespace Serilog.Sinks.AnsiConsole.Sink
+namespace TheDialgaTeam.Serilog.Sinks.AnsiConsole.Sink
 {
     public class ConsoleSink : ILogEventSink
     {

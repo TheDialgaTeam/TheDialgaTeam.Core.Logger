@@ -1,11 +1,12 @@
-﻿using Serilog.Configuration;
+﻿using Serilog;
+using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
-using Serilog.Formatting.Ansi;
-using Serilog.Sinks.AnsiConsole.Sink;
+using TheDialgaTeam.Serilog.Formatting.Ansi;
+using TheDialgaTeam.Serilog.Sinks.AnsiConsole.Sink;
 
-namespace Serilog.Sinks.AnsiConsole
+namespace TheDialgaTeam.Serilog.Sinks.AnsiConsole
 {
     public static class ConsoleLoggerConfigurationExtensions
     {
