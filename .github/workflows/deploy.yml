@@ -1,4 +1,4 @@
-name: Deploy To NuGet registry
+name: Deploy To NuGet Registry
 
 on:
   push:
@@ -15,11 +15,10 @@ defaults:
 
 jobs:
   build:
-    name: Build library
+    name: Build and Deploy library
     runs-on: windows-2022
 
     steps:
-      # Init
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -29,7 +28,6 @@ jobs:
         run: |
           dotnet nuget add source --username "${{ github.actor }}" --password "${{ github.token }}" --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
 
-      # Build Project
       - name: Patch csproj
         run: |
           $version = "${{ github.ref }}" -split "/" | Select-Object -Last 1
@@ -43,6 +41,5 @@ jobs:
 
       - name: Publish project
         run: |
-          $version = "${{ github.ref }}" -split "/" | Select-Object -Last 1
           $output = Join-Path "${{ github.workspace }}" "${env:PROJECT_PUBLISH_ROOT}" "*.nupkg"
           dotnet nuget push "${output}" --api-key "${{ github.token }}" --source "github"
