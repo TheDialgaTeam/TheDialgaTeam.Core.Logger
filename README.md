@@ -34,5 +34,5 @@ This library provides extensions for Serilog and LoggerTemplate.
     Install from the command line:
     
     ```Shell
-    dotnet add package TheDialgaTeam.Core.Logger --version 1.1.0
+    dotnet add package TheDialgaTeam.Core.Logger --version 1.2.0
     ```
