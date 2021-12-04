@@ -8,11 +8,11 @@
         <Nullable>enable</Nullable>
 		
 		<PackageId>TheDialgaTeam.Core.Logger</PackageId>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
 		<Authors>Yong Jian Ming</Authors>
         <Company>TheDialgaTeam</Company>
 		<Product>TheDialgaTeam.Core.Logger</Product>
-		<Description>TheDialgaTeam Core Logger metapackage.</Description>
+		<Description>This library provides extensions for Serilog and LoggerTemplate.</Description>
 		<Copyright>Copyright © 2021 Yong Jian Ming</Copyright>
 		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logger</RepositoryUrl>
